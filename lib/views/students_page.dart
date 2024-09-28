@@ -8,11 +8,13 @@ class StudentsPage extends StatefulWidget {
 }
 
 class _StudentsPageState extends State<StudentsPage> {
-  List<String> list = <String>['Course 1', 'Course 2', 'Course 3', 'Course 4'];
+  List<String> list = <String>['All','Course 1', 'Course 2', 'Course 3', 'Course 4'];
+  List<String> year = <String>['2022', '2023', '2024',];
 
   @override
   Widget build(BuildContext context) {
     String dropDownValue = list.first;
+    String yearDropDownValue = year.first;
     return Container(
       padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
       width: double.infinity,
@@ -33,6 +35,26 @@ class _StudentsPageState extends State<StudentsPage> {
               ),
               Row(
                 children: [
+                  const Text(
+                    'Year: ',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: DropdownMenu<String>(
+                      initialSelection: year.first,
+                      onSelected: (String? value) {
+                        setState(() {
+                          yearDropDownValue = value!;
+                        });
+                      },
+                      dropdownMenuEntries:
+                          year.map<DropdownMenuEntry<String>>((String value) {
+                        return DropdownMenuEntry<String>(
+                            value: value, label: value);
+                      }).toList(),
+                    ),
+                  ),
                   const Text(
                     'Trade: ',
                     style: TextStyle(fontSize: 18),
@@ -181,7 +203,8 @@ class _StudentsPageState extends State<StudentsPage> {
                 ],
               ),
             ),
-          )
+          ),
+          //students list container ending
         ],
       ),
     );

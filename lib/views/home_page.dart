@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iti_admin_mod/views/attendance_page.dart';
 import 'package:iti_admin_mod/views/departments_page.dart';
 import 'package:iti_admin_mod/views/holidays_page.dart';
 import 'package:iti_admin_mod/views/staffs_page.dart';
@@ -20,9 +21,7 @@ class _HomePageState extends State<HomePage> {
     const StaffsPage(),
     const DepartmentsPage(),
     const HolidaysPage(),
-    const Center(
-      child: Text('Attendance Page'),
-    )
+    const AttendancePage(),
   ];
 
   @override
