@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:iti_admin_mod/views/add_student_form.dart';
 import 'package:iti_admin_mod/views/attendance_page.dart';
 import 'package:iti_admin_mod/views/departments_page.dart';
 import 'package:iti_admin_mod/views/holidays_page.dart';
 import 'package:iti_admin_mod/views/staffs_page.dart';
+import 'package:iti_admin_mod/views/stipend_page.dart';
 import 'package:iti_admin_mod/views/students_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,12 +18,12 @@ class _HomePageState extends State<HomePage> {
   int itemIndex = 0;
 
   final List<Widget> pages = [
-  
     const StudentsPage(),
     const StaffsPage(),
     const DepartmentsPage(),
     const HolidaysPage(),
     const AttendancePage(),
+    const StipendPage(),
   ];
 
   @override
@@ -51,11 +53,21 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                _buildMenuItem(index: 0, title: 'Students', icon: Icons.people_rounded),
+                _buildMenuItem(
+                    index: 0, title: 'Students', icon: Icons.people_rounded),
                 _buildMenuItem(index: 1, title: 'Staff', icon: Icons.work),
-                _buildMenuItem(index: 2, title: 'Departments', icon: Icons.business),
-                _buildMenuItem(index: 3, title: 'Holiday', icon: Icons.calendar_today),
-                _buildMenuItem(index: 4, title: 'Attendance', icon: Icons.check_circle_rounded),
+                _buildMenuItem(
+                    index: 2, title: 'Departments', icon: Icons.business),
+                _buildMenuItem(
+                    index: 3, title: 'Holiday', icon: Icons.calendar_today),
+                _buildMenuItem(
+                    index: 4,
+                    title: 'Attendance',
+                    icon: Icons.check_circle_rounded),
+                _buildMenuItem(
+                    index: 5,
+                    title: 'Stipend',
+                    icon: Icons.attach_money),
               ],
             ),
           ),
@@ -79,7 +91,9 @@ class _HomePageState extends State<HomePage> {
           children: [
             Icon(
               icon,
-              color: itemIndex == index ? const Color(0xff5473FF) : const Color(0xff797676),
+              color: itemIndex == index
+                  ? const Color(0xff5473FF)
+                  : const Color(0xff797676),
             ),
             const SizedBox(
               width: 20,
@@ -87,10 +101,12 @@ class _HomePageState extends State<HomePage> {
             Text(
               title,
               style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  
-                  color: itemIndex == index ? const Color(0xff5473FF) : const Color(0xff797676),),
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+                color: itemIndex == index
+                    ? const Color(0xff5473FF)
+                    : const Color(0xff797676),
+              ),
             )
           ],
         ),

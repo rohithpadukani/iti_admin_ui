@@ -1,16 +1,16 @@
 List<String> students = ['rohith', 'abhijith', 'anujith', 'nikhil', 'midhun', 'athul', 'kichu', 'sachu', 'richu'];
 
 List<Map<String, dynamic>> studentsData = [
-  {'name':'Rohith', 'rollno':'001'},
-  {'name':'Abhijith', 'rollno':'002'},
-  {'name':'Anujith', 'rollno':'003'},
-  {'name':'Nikhil', 'rollno':'004'},
-  {'name':'Midhun', 'rollno':'005'},
-  {'name':'Athul', 'rollno':'006'},
-  {'name':'Kichu', 'rollno':'007'},
-  {'name':'Sachu', 'rollno':'008'},
-  {'name':'Richu', 'rollno':'009'},
-  {'name':'Adarsh', 'rollno':'010'},
+  {'name':'Rohith', 'rollno':'001', 'course':'Fitter'},
+  {'name':'Abhijith', 'rollno':'002', 'course':'Plumber'},
+  {'name':'Anujith', 'rollno':'003', 'course':'Fitter'},
+  {'name':'Nikhil', 'rollno':'004', 'course':'Fitter'},
+  {'name':'Midhun', 'rollno':'005',  'course':'Plumber'},
+  {'name':'Athul', 'rollno':'006', 'course':'Wireman'},
+  {'name':'Kichu', 'rollno':'007', 'course':'Wireman'},
+  {'name':'Sachu', 'rollno':'008', 'course':'Fitter'},
+  {'name':'Richu', 'rollno':'009', 'course':'Plumber'},
+  {'name':'Adarsh', 'rollno':'010', 'course':'Fitter'},
 ];
 
 List<Map<String, dynamic>> courses = [

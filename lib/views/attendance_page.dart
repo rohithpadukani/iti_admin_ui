@@ -298,20 +298,20 @@ class _DailyViewReportState extends State<DailyViewReport> {
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: 20,
+                    itemCount: stipendData.length,
                     itemBuilder: (context, index) {
                       return Container(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: [
                             Expanded(
-                              child: Text('MSC00$index'),
+                              child: Text(studentsData[index]['rollno'],),
                             ),
                             Expanded(
-                              child: Text('Name$index'),
+                              child: Text(studentsData[index]['name'],),
                             ),
                             Expanded(
-                              child: Text('Trade$index'),
+                              child: Text(studentsData[index]['course'],),
                             ),
                             Expanded(
                               child: Container(

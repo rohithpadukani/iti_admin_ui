@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iti_admin_mod/models/db.dart';
-import 'package:iti_admin_mod/views/add_student_form.dart';
 
-class StudentsPage extends StatefulWidget {
-  const StudentsPage({super.key});
+class StipendPage extends StatefulWidget {
+  const StipendPage({super.key});
 
   @override
-  State<StudentsPage> createState() => _StudentsPageState();
+  State<StipendPage> createState() => _StipendPageState();
 }
 
-class _StudentsPageState extends State<StudentsPage> {
-  List<String> list = <String>['All','Course 1', 'Course 2', 'Course 3', 'Course 4'];
+class _StipendPageState extends State<StipendPage> {
+  List<String> trade = <String>['Fitter','Plumber', 'Wireman'];
+  List<String> month = <String>['Jan', 'Feb', 'March', 'April', 'May'];
+  List<String> caste = <String>['SE', 'ST', 'General',];
   List<String> year = <String>['2022', '2023', '2024',];
-
   @override
   Widget build(BuildContext context) {
-    String dropDownValue = list.first;
+    String tradeDropDownValue = trade.first;
+    String monthDropDownValue = month.first;
+    String casteDropDownValue = caste.first;
     String yearDropDownValue = year.first;
     return Container(
       padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
@@ -59,50 +60,79 @@ class _StudentsPageState extends State<StudentsPage> {
                     ),
                   ),
                   const Text(
+                    'Month: ',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: DropdownMenu<String>(
+                      initialSelection: month.first,
+                      onSelected: (String? value) {
+                        setState(() {
+                          monthDropDownValue = value!;
+                        });
+                      },
+                      dropdownMenuEntries:
+                          month.map<DropdownMenuEntry<String>>((String value) {
+                        return DropdownMenuEntry<String>(
+                            value: value, label: value);
+                      }).toList(),
+                    ),
+                  ),
+                  const Text(
                     'Trade: ',
                     style: TextStyle(fontSize: 18),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: DropdownMenu<String>(
-                      initialSelection: list.first,
+                      initialSelection: trade.first,
                       onSelected: (String? value) {
                         setState(() {
-                          dropDownValue = value!;
+                          tradeDropDownValue = value!;
                         });
                       },
                       dropdownMenuEntries:
-                          list.map<DropdownMenuEntry<String>>((String value) {
+                          trade.map<DropdownMenuEntry<String>>((String value) {
+                        return DropdownMenuEntry<String>(
+                            value: value, label: value);
+                      }).toList(),
+                    ),
+                  ),
+                  const Text(
+                    'Caste: ',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: DropdownMenu<String>(
+                      initialSelection: caste.first,
+                      onSelected: (String? value) {
+                        setState(() {
+                          casteDropDownValue = value!;
+                        });
+                      },
+                      dropdownMenuEntries:
+                          caste.map<DropdownMenuEntry<String>>((String value) {
                         return DropdownMenuEntry<String>(
                             value: value, label: value);
                       }).toList(),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Get.to(const AddStudentForm());
-                    },
+                    onTap: () {},
                     child: Container(
                       padding: const EdgeInsets.fromLTRB(16, 11, 16, 11),
                       decoration: BoxDecoration(
                         color: const Color(0xff5473FF),
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      child: const Row(
-                        children: [
-                          Text(
-                            'Add Student ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Icon(
-                            Icons.add_rounded,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                        ],
+                      child: const Text(
+                        'Export',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),
@@ -142,6 +172,9 @@ class _StudentsPageState extends State<StudentsPage> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16))),
                         Expanded(
+                            child: Text('Amount',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                                Expanded(
                             child: Text('',
                                 style: TextStyle(fontWeight: FontWeight.bold))),
                       ],
@@ -160,43 +193,20 @@ class _StudentsPageState extends State<StudentsPage> {
                                 child: Text(studentsData[index]['rollno']),
                               ),
                               Expanded(
-                                child: Text(studentsData[index]['name']),
+                                child: Text(stipendData[index]['name']),
                               ),
                               Expanded(
                                 child: Text(studentsData[index]['course']),
                               ),
                               Expanded(
+                                child: Text(stipendData[index]['amount'].toString()),
+                              ),
+                              Expanded(
                                 child: Container(
                                   margin: const EdgeInsets.only(left: 50),
-                                  child: Row(
-                                    children: [
-                                      GestureDetector(
-                                          onTap: () {},
-                                          child: const Icon(Icons.edit)),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {},
-                                        child: Container(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              16, 11, 16, 11),
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff5473FF),
-                                            borderRadius:
-                                                BorderRadius.circular(14),
-                                          ),
-                                          child: const Text(
-                                            'Delete',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                  child: GestureDetector(
+                                      onTap: () {},
+                                      child: const Icon(Icons.edit)),
                                 ),
                               ),
                             ],
